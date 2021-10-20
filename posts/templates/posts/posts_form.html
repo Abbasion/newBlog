@@ -1,0 +1,98 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <form action="" method="POST" class="form-row" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="d-block">
+        {% if form.title.errors %}
+        {% for err_title in from.title.errors %}
+        <p>Title{{ err_title | escape }}</p>
+        {% endfor %}
+        {% endif %}
+        {% if form.content.errors %}
+        {% for err_content in from.content.errors %}
+        <p>Content{{ err_content | escape }}</p>
+        {% endfor %}
+        {% endif %}
+        {% if form.thumbnail.errors %}
+        {% for err_thumbnail in from.thumbnail.errors %}
+        <p>Thumbnail{{ err_thumbnail | escape }}</p>
+        {% endfor %}
+        {% endif %}
+        {% if form.errors %}
+            {% for errors in form.non_field_errors %}
+                <p>{{errors | escape }}</p>
+            {% endfor %}
+        {% endif %}
+        {% for f in form %}
+        <div class="form-group">
+            {{f.label_tag}}
+
+            {{f}}
+        </div>
+        {% endfor %}
+    </div>
+    <input class="btn btn-primary" type="submit" value="Add Post">
+</form>
+<!--<div>-->
+<!--    {% for row in rows %}-->
+<!--    <h2>{{row.title}}</h2>-->
+<!--    <p>{{row.content}} - <samall>{{row.created_at}}</samall></p>-->
+<!--     <img src="{% static row.thumbnail %}" width="50">-->
+<!--    <p><h2>Gallery Images</h2></p>-->
+<!--    <p>-->
+<!--        {% for g in row.gallery_set.all %}-->
+<!--            <img src="{% static g.images %}" width="50">-->
+<!--        {% endfor %}-->
+<!--    </p>-->
+<!--    <p class="small">{{row.user.username}}</p>-->
+<!--    <ul>-->
+<!--        {% for cat in row.category.all %}-->
+<!--        <li>-->
+<!--            {{cat}}-->
+<!--        </li>-->
+<!--        {% endfor %}-->
+<!--    </ul>-->
+<!--    {% endfor %}-->
+<!--</div>-->
+<!--<div>-->
+<!--    <h2>Categories</h2>-->
+<!--    {% for cats in categories %}-->
+<!--    <h4>{{cats.title}}</h4>-->
+<!--        {% for cat in cats.categories.all %}-->
+<!--            {{cat}}-->
+<!--        {% endfor %}-->
+<!--    {% endfor %}-->
+<!--</div>-->
+<!--        </div>-->
+    </div>
+</div>
+</div>
+<script>
+    $(function(){
+        $('form').on('submit', function(e){
+            e.preventDefault()
+            var formData = new FormData(this)
+            $.ajax({
+                url: "{{ request.get_full_path }}",
+                type:"POST",
+                data: formData,
+                contentType: false,
+                processData: false,
+                cache:false,
+                success: function(data){
+                    console.log(data);
+                },
+                error:function(err){
+                    console.log(err);
+                }
+            })
+        })
+    })
+</script>
+
+
+{% endblock %}

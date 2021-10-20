@@ -1,0 +1,50 @@
+{% extends 'layout.html' %}
+{% load static %}
+{% block content %}
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 offset-md-3">
+            <h1>Are you sure you want to delete this records</h1>
+            <form action="" method="POST" class="form-row" enctype="multipart/form-data">
+    {% csrf_token %}
+    <div class="form-group">
+    <input class="btn btn-primary" type="submit" value="Delete Post">
+    </div>
+</form>
+<!--<div>-->
+<!--    {% for row in rows %}-->
+<!--    <h2>{{row.title}}</h2>-->
+<!--    <p>{{row.content}} - <samall>{{row.created_at}}</samall></p>-->
+<!--     <img src="{% static row.thumbnail %}" width="50">-->
+<!--    <p><h2>Gallery Images</h2></p>-->
+<!--    <p>-->
+<!--        {% for g in row.gallery_set.all %}-->
+<!--            <img src="{% static g.images %}" width="50">-->
+<!--        {% endfor %}-->
+<!--    </p>-->
+<!--    <p class="small">{{row.user.username}}</p>-->
+<!--    <ul>-->
+<!--        {% for cat in row.category.all %}-->
+<!--        <li>-->
+<!--            {{cat}}-->
+<!--        </li>-->
+<!--        {% endfor %}-->
+<!--    </ul>-->
+<!--    {% endfor %}-->
+<!--</div>-->
+<!--<div>-->
+<!--    <h2>Categories</h2>-->
+<!--    {% for cats in categories %}-->
+<!--    <h4>{{cats.title}}</h4>-->
+<!--        {% for cat in cats.categories.all %}-->
+<!--            {{cat}}-->
+<!--        {% endfor %}-->
+<!--    {% endfor %}-->
+<!--</div>-->
+<!--        </div>-->
+    </div>
+</div>
+</div>
+
+
+{% endblock %}

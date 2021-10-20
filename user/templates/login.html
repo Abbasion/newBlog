@@ -1,0 +1,84 @@
+{% extends 'user/layout.html' %}
+
+{% block content %}
+<div id="container">
+
+
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+
+<h1 id="site-name"><a href="/user/register">User Register</a></h1>
+
+        </div>
+
+
+    </div>
+    <!-- END Header -->
+
+
+
+    <div class="main shifted" id="main">
+
+
+
+      <div class="content">
+
+
+
+        <!-- Content -->
+        <div id="content" class="colM">
+
+
+
+
+
+
+
+<div id="content-main">
+    {% if messages %}
+        {% for message in messages %}
+    <p {% if message.tags %} class="{{message.tags}}" {% endif %}></p>
+    {{message}}
+        {% endfor %}
+    {% endif %}
+
+
+<form action="/user/login/" method="post" id="login-form">
+    {% csrf_token %}
+
+
+    <div class="form-row">
+        {% if form.username.errors %}
+        {{form.username.errors}}
+        {% endif %}
+        {{form.username.label_tag}}
+        {{form.uername}}
+    </div>
+    <div class="form_row">
+        {% if form.username.errors %}
+        {{form.username.errors}}
+        {% endif %}
+        {{form.password.label_tag}}
+        {{form.password1}}
+    </div>
+
+
+    <div class="submit-row">
+        <label>&nbsp</label><input type="submit" value="user register">
+    </div>
+
+
+</form>
+
+</div>
+
+
+          <br class="clear">
+        </div>
+        <!-- END Content -->
+        <div id="footer"></div>
+      </div>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+    <meta charset="UTF-8">
+    <title>List of Posts</title>
+</head>
+<body>
+    <h1>list of Posts </h1>
+<div>
+    <a href="/add/">Add new Post</a>
+    {% if object_list.count > 0 %}
+    {% for row in object_list %}
+    <h2>{{row.title}}</h2>
+            {{row.content}}
+    <p>{{row.content}} - <samall>{{row.created_at}}</samall></p>
+     <img src="{% static row.thumbnail %}" width="50">
+    <p><h2>Gallery Images</h2></p>
+    <p>
+        {% for g in row.gallery_set.all %}
+            <img src="{% static g.images %}" width="50">
+        {% endfor %}
+    </p>
+    <p class="small">{{row.user.username}}</p>
+    <ul>
+        {% for cat in row.category.all %}
+
+        <li>
+            {{cat}}
+        </li>
+        {% endfor %}
+    </ul>
+            <p><a href="/edit/{{row.id}}/">Edit Post</a> | <a href="/delete/{{row.id}}/">Delete Post</a> </p>
+    {% endfor %}
+    {% endif %}
+</div>
+<!--<div>-->
+<!--    <h2>Categories</h2>-->
+<!--    {% for cats in categories %}-->
+<!--    <h4>{{cats.title}}</h4>-->
+<!--        {% for cat in cats.categories.all %}-->
+
+<!--            {{cat}}-->
+<!--        {% endfor %}-->
+<!--    {% endfor %}-->
+<!--</div>-->
+</body>
+</html>

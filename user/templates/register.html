@@ -1,0 +1,81 @@
+{% extends 'user/layout.html' %}
+
+{% block content %}
+<div id="container">
+
+
+    <!-- Header -->
+    <div id="header">
+        <div id="branding">
+
+<h1 id="site-name"><a href="/user/login">User Login</a></h1>
+
+        </div>
+
+
+    </div>
+    <!-- END Header -->
+
+
+
+    <div class="main shifted" id="main">
+
+
+
+      <div class="content">
+
+
+
+        <!-- Content -->
+        <div id="content" class="colM">
+
+
+
+
+
+
+
+<div id="content-main">
+
+
+
+<form action="/user/register" method="post" id="login-form">
+    {% csrf_token %}
+    <div class="form-row">
+        {% if form.username.errors %}
+        {{form.username.errors}}
+        {% endif %}
+        {{form.username.label_tag}}
+        {{form.uername}}
+    </div>
+    <div class="form_row">
+        {% if form.password1.errors %}
+        {{form.password1.errors}}
+        {% endif %}
+        {{form.password.label_tag}}
+        {{form.password1}}
+
+    </div>
+    <div class="form_row">
+        {% if form.password2.errors %}
+        {{form.password2.errors}}
+        {% endif %}
+        {{form.password.label_tag}}
+        {{form.password2}}
+    </div>
+    <div class="submit-row">
+        <label>&nbsp</label><input type="submit" value="user register">
+    </div>
+</form>
+
+</div>
+
+
+          <br class="clear">
+        </div>
+        <!-- END Content -->
+        <div id="footer"></div>
+      </div>
+    </div>
+</div>
+{% endblock %}
